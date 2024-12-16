@@ -18,7 +18,6 @@ public class BookingTest {
         bookingPage.verifyAllHotelsHaveFiveStars();
     }
 
-    // Важно закрывать веб-драйвер после завершения теста
     @Test
     public void tearDown() {
         closeWebDriver();
