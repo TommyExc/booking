@@ -8,8 +8,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BookingPage {
 
     private SelenideElement searchInput = $("input[data-sb-id='location']");
-    private SelenideElement checkInDate = $("div[data-placeholder='Check-in']");
-    private SelenideElement checkOutDate = $("div[data-placeholder='Check-out']");
+    private SelenideElement checkInDateInput = $("div[data-placeholder='Check-in']");
+    private SelenideElement checkOutDateInput = $("div[data-placeholder='Check-out']");
     private SelenideElement searchButton = $("button[data-sb-id='submit-button']");
     private SelenideElement mapButton = $("button[data-testid='map-button']");
     private SelenideElement firstHotelCard = $("div[data-testid='property-card']:nth-child(1)");
@@ -28,33 +28,25 @@ public class BookingPage {
     }
 
     public void selectRandomDates() {
-        // Получаем текущую дату
         LocalDate today = LocalDate.now();
-
-        // Генерируем случайное количество дней для заезда (от 1 до 30)
+        
         int checkInDays = ThreadLocalRandom.current().nextInt(1, 31);
-
-        // Генерируем случайное количество дней для выезда (от 1 до 5 дней после заезда)
         int checkOutDays = checkInDays + ThreadLocalRandom.current().nextInt(1, 6);
-
-        // Получаем даты заезда и выезда
+        
         LocalDate checkInDate = today.plusDays(checkInDays);
         LocalDate checkOutDate = today.plusDays(checkOutDays);
 
-        // Форматируем даты в нужный формат (например, "yyyy-MM-dd" для селекторов)
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String checkInDateFormatted = checkInDate.format(dateFormatter);
         String checkOutDateFormatted = checkOutDate.format(dateFormatter);
 
-        // Выводим сгенерированные даты в консоль
         System.out.println("Случайная дата заезда: " + checkInDate);
         System.out.println("Случайная дата выезда: " + checkOutDate);
 
-        // Открываем календарь и выбираем даты
-        checkInDate.click();
-        $("td[data-date='" + checkInDateFormatted + "']").click(); // Выбор даты заезда
-        checkOutDate.click();
-        $("td[data-date='" + checkOutDateFormatted + "']").click(); // Выбор даты выезда
+        checkInDateInput.click();
+        $("td[data-date='" + checkInDateFormatted + "']").click(); 
+        checkOutDateInput.click();
+        $("td[data-date='" + checkOutDateFormatted + "']").click(); 
     }
 
     public void clickSearchButton() {
