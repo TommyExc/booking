@@ -1,5 +1,7 @@
+package booking1.example;
+
 import io.qameta.allure.Description;
-import org.example2.BookingPage;
+import booking1.example2.BookingPage;
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 

@@ -1,4 +1,4 @@
-package org.example2;
+package booking1.example2;
 
 public class BookingPage {
     public void open() {
@@ -14,5 +14,6 @@ public class BookingPage {
     }
 
     public void verifyAllHotelsHaveFiveStars() {
+
     }
 }
